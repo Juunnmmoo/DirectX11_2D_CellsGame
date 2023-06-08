@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <ItemsProjectGuid>{d5a18c91-ef99-4464-b458-cbf26343e56e}</ItemsProjectGuid>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(MSBuildThisFileDirectory)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectCapability Include="SourceItemsFromImports" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)moApplication.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)moComponent.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)moConstantBuffer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)moEntity.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)moEnums.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)moGameObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)moGraphicDevice_Dx11.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)moGraphics.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)moInput.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)moLayer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)moMesh.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)momoEngine.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)moRenderer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)moResource.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)moResources.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)moScene.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)moSceneManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)moScript.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)moShader.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)moTime.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)moMath.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)moApplication.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)moComponent.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)moConstantBuffer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)moEntity.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)moGameObject.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)moGraphicDevice_Dx11.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)moInput.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)moLayer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)moMesh.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)moRenderer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)moResource.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)moResources.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)moScene.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)moSceneManager.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)moScript.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)moShader.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)moTime.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)moMath.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)moMath.inl" />
+  </ItemGroup>
+</Project>
