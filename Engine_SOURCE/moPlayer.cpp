@@ -2,10 +2,10 @@
 #include "moRenderer.h"
 #include "moInput.h"
 #include "moTime.h"
+#include "moGraphics.h"
 
 namespace mo {
 	Player::Player()
-		: mPos(Vector2::Zero)
 	{
 	}
 	Player::~Player()
@@ -13,29 +13,30 @@ namespace mo {
 	}
 	void Player::Initialize()
 	{
-		mPos = GetPos();
+		SetScale(Vector4(1.0f, 0.0f, 0.0f, 0.0f));
+		SetColor(Vector4(1.0f, 0.0f, 0.0f, 1.0f));
 
 		GameObject::Initialize();
 	}
 	void Player::Update()
 	{
-		mPos = GetPos();
+		Vector4 mPos = GetPos();
 
 		if (Input::GetKey(eKeyCode::UP))
 		{
-			mPos.y += 0.5 * Time::DeltaTime();
+			mPos.y += 1.0f * Time::DeltaTime();
 		}
 		if (Input::GetKey(eKeyCode::DOWN))
 		{
-			mPos.y -= 0.5 * Time::DeltaTime();
+			mPos.y -= 1.0f * Time::DeltaTime();
 		}
 		if (Input::GetKey(eKeyCode::RIGHT))
 		{
-			mPos.x += 0.5 * Time::DeltaTime();
+			mPos.x += 1.0f * Time::DeltaTime();
 		}
 		if (Input::GetKey(eKeyCode::LEFT))
 		{
-			mPos.x -= 0.5 * Time::DeltaTime();
+			mPos.x -= 1.0f * Time::DeltaTime();
 		}
 
 		SetPos(mPos);
@@ -47,9 +48,15 @@ namespace mo {
 	}
 	void Player::Render()
 	{
-		Vector4 pos(GetPos().x, GetPos().y, 0.0f, 1.0f);
-		renderer::constantBuffer->SetData(&pos);
-		renderer::constantBuffer->Bind(eShaderStage::VS);
+		
+		renderer::constantBuffer[UINT(mo::graphics::eCBType::Transform)]->SetData(GetPosAdressOf());
+		renderer::constantBuffer[UINT(mo::graphics::eCBType::Transform)]->Bind(eShaderStage::VS);
+
+		renderer::constantBuffer[UINT(mo::graphics::eCBType::Color)]->SetData(GetColorAdressOf());
+		renderer::constantBuffer[UINT(mo::graphics::eCBType::Color)]->Bind(eShaderStage::VS);
+
+		renderer::constantBuffer[UINT(mo::graphics::eCBType::Scale)]->SetData(GetScaleAdressOf());
+		renderer::constantBuffer[UINT(mo::graphics::eCBType::Scale)]->Bind(eShaderStage::VS);
 
 		GameObject::Render();
 	}

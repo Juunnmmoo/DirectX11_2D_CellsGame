@@ -15,8 +15,13 @@ namespace mo {
 		virtual void Render();
 		virtual void Release();
 
+		bool CheckColider(GameObject* monster);
+
 	private:
-		std::vector<GameObject*> mGameObjects;
+		float mTime;
+
+		std::vector<GameObject*> mMonsters;
+		class Player* mPlayer;
 	};
 }
 

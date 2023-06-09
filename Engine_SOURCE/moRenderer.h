@@ -16,7 +16,7 @@ namespace mo::renderer {
 	extern Vertex vertexes[];
 	extern mo::Mesh* mesh;
 	extern mo::Shader* shader;
-	extern mo::graphics::ConstantBuffer* constantBuffer;
+	extern std::vector<mo::graphics::ConstantBuffer*> constantBuffer;
 
 	void Initialize();
 	void Release();

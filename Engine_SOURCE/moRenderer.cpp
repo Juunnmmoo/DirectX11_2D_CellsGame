@@ -5,7 +5,7 @@ namespace mo::renderer {
 	Vertex vertexes[4] = {};
 	mo::Mesh* mesh = nullptr;
 	mo::Shader* shader = nullptr;
-	mo::graphics::ConstantBuffer* constantBuffer = nullptr;
+	std::vector<mo::graphics::ConstantBuffer*> constantBuffer = {};
 
 	void SetUpState()
 	{
@@ -47,12 +47,14 @@ namespace mo::renderer {
 		mesh->CreateIndexBuffer(indexes.data(), indexes.size());
 
 		// ConstantBuffer
-		constantBuffer = new mo::graphics::ConstantBuffer(eCBType::Transform);
-		constantBuffer->Create(sizeof(Vector4));
+		constantBuffer.push_back(new mo::graphics::ConstantBuffer(eCBType::Transform));
+		constantBuffer[UINT(eCBType::Transform)]->Create(sizeof(Vector4));
 
-		Vector4 pos(0.3f, 0.0f, 0.0f, 1.0f);
-		constantBuffer->SetData(&pos);
-		constantBuffer->Bind(eShaderStage::VS);
+		constantBuffer.push_back(new mo::graphics::ConstantBuffer(eCBType::Color));
+		constantBuffer[UINT(eCBType::Color)]->Create(sizeof(Vector4));
+
+		constantBuffer.push_back(new mo::graphics::ConstantBuffer(eCBType::Scale));
+		constantBuffer[UINT(eCBType::Scale)]->Create(sizeof(Vector4));
 	};
 
 	void LoadShader()
@@ -85,6 +87,8 @@ namespace mo::renderer {
 	{
 		delete mesh;
 		delete shader;
-		delete constantBuffer;
+
+		for (ConstantBuffer* constants : constantBuffer)
+			delete constants;
 	}
 }

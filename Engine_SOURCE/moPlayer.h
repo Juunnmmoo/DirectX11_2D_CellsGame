@@ -15,7 +15,6 @@ namespace mo {
 		void Render() override;
 
 	private:
-		Vector2 mPos;
 	};
 
 }

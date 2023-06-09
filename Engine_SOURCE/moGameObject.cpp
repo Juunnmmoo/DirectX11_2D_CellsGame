@@ -5,7 +5,10 @@
 namespace mo {
 	GameObject::GameObject()
 		: mState(eState::Active)
-		, mPos(Vector2::Zero)
+		, mPos(Vector4::Zero)
+		, mColor(Vector4::Zero)
+		, mScale(Vector4::Zero)
+
 	{ 
 	}
 	GameObject::~GameObject()

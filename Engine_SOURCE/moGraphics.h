@@ -23,6 +23,8 @@ namespace mo::graphics {
 	enum class eCBType
 	{
 		Transform,
+		Color,
+		Scale,
 		End,
 	};
 	
