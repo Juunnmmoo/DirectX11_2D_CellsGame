@@ -1,7 +1,5 @@
 #include "moMonster.h"
-#include "moMesh.h"
 #include "moRenderer.h"
-#include "moConstantBuffer.h"
 
 
 namespace mo {
@@ -13,11 +11,6 @@ namespace mo {
 	}
 	void Monster::Initialize()
 	{
-		GetMesh()->CreateVertexBuffer(renderer::vertexes, 4);
-		GetMesh()->CreateIndexBuffer(renderer::indexes.data(), renderer::indexes.size());
-
-		
-
 		GameObject::Initialize();
 	}
 	void Monster::Update()
@@ -31,8 +24,8 @@ namespace mo {
 	void Monster::Render()
 	{
 		Vector4 pos(0.5f, 0.3f, 0.0f, 1.0f);
-		GetConstantsBuffer()[UINT(eCBType::Transform)]->SetData(&pos);
-		GetConstantsBuffer()[UINT(eCBType::Transform)]->Bind(eShaderStage::VS);
+		renderer::constantBuffer->SetData(&pos);
+		renderer::constantBuffer->Bind(eShaderStage::VS);
 
 		GameObject::Render();
 	}

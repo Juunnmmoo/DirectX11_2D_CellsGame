@@ -12,6 +12,7 @@ namespace mo {
 	}
 	Application::~Application()
 	{
+		delete mScene;
 	}
 	void Application::Run()
 	{

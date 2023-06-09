@@ -1,7 +1,5 @@
 #include "moPlayer.h"
-#include "moMesh.h"
 #include "moRenderer.h"
-#include "moConstantBuffer.h"
 #include "moInput.h"
 #include "moTime.h"
 
@@ -15,9 +13,6 @@ namespace mo {
 	}
 	void Player::Initialize()
 	{
-		GetMesh()->CreateVertexBuffer(renderer::vertexes, 4);
-		GetMesh()->CreateIndexBuffer(renderer::indexes.data(), renderer::indexes.size());
-
 		mPos = GetPos();
 
 		GameObject::Initialize();
@@ -28,19 +23,19 @@ namespace mo {
 
 		if (Input::GetKey(eKeyCode::UP))
 		{
-			mPos.y += 0.1 * Time::DeltaTime();
+			mPos.y += 0.5 * Time::DeltaTime();
 		}
 		if (Input::GetKey(eKeyCode::DOWN))
 		{
-			mPos.y -= 0.1 * Time::DeltaTime();
+			mPos.y -= 0.5 * Time::DeltaTime();
 		}
 		if (Input::GetKey(eKeyCode::RIGHT))
 		{
-			mPos.x += 0.1 * Time::DeltaTime();
+			mPos.x += 0.5 * Time::DeltaTime();
 		}
 		if (Input::GetKey(eKeyCode::LEFT))
 		{
-			mPos.x -= 0.1 * Time::DeltaTime();
+			mPos.x -= 0.5 * Time::DeltaTime();
 		}
 
 		SetPos(mPos);
@@ -53,8 +48,8 @@ namespace mo {
 	void Player::Render()
 	{
 		Vector4 pos(GetPos().x, GetPos().y, 0.0f, 1.0f);
-		GetConstantsBuffer()[UINT(eCBType::Transform)]->SetData(&pos);
-		GetConstantsBuffer()[UINT(eCBType::Transform)]->Bind(eShaderStage::VS);
+		renderer::constantBuffer->SetData(&pos);
+		renderer::constantBuffer->Bind(eShaderStage::VS);
 
 		GameObject::Render();
 	}

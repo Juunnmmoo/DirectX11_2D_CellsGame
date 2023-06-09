@@ -77,6 +77,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
             application.Run();
         }
     }
+
     mo::renderer::Release();
     application.SceneRelease();
 
