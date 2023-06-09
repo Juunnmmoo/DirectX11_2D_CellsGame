@@ -27,6 +27,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)moLayer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)moMesh.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)momoEngine.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)moMonster.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)moPlayer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)moRenderer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)moResource.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)moResources.h" />
@@ -47,6 +49,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)moInput.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)moLayer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)moMesh.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)moMonster.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)moPlayer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)moRenderer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)moResource.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)moResources.cpp" />

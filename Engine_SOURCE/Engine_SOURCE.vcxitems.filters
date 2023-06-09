@@ -43,6 +43,15 @@
     <Filter Include="GameObject\Component\Script">
       <UniqueIdentifier>{12f391ad-edec-4ad7-b39d-ed032e5b51f6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Obj">
+      <UniqueIdentifier>{e2bdcfa4-7bf8-49de-991e-a3971a9dd361}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Obj\Player">
+      <UniqueIdentifier>{d43900a9-e40e-4aff-b21b-f096f7af4659}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Obj\Monster">
+      <UniqueIdentifier>{1f170d84-4979-437f-bef5-7c5985a1f30e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)moApplication.cpp">
@@ -98,6 +107,12 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)moSceneManager.cpp">
       <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)moPlayer.cpp">
+      <Filter>Obj\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)moMonster.cpp">
+      <Filter>Obj\Monster</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -166,6 +181,12 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)moSceneManager.h">
       <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)moPlayer.h">
+      <Filter>Obj\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)moMonster.h">
+      <Filter>Obj\Monster</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

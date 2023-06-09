@@ -13,11 +13,10 @@ namespace mo {
 		virtual void Update();
 		virtual void LateUpdate();
 		virtual void Render();
+		virtual void Release();
 
 	private:
 		std::vector<GameObject*> mGameObjects;
-
-		GameObject* mGameObj;
 	};
 }
 

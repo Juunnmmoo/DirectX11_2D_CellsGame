@@ -1,4 +1,6 @@
 #include "moScene.h"
+#include "moPlayer.h"
+#include "moMonster.h"
 
 namespace mo {
 	Scene::Scene()
@@ -9,10 +11,20 @@ namespace mo {
 	}
 	void Scene::Initialize()
 	{
-		mGameObj = new GameObject();
+		Player* player = new Player();
+		mGameObjects.push_back(player);
+
+		Monster* monster = new Monster();
+		mGameObjects.push_back(monster);
+
+		for (GameObject* gameObj : mGameObjects)
+		{
+			gameObj->Initialize();
+		}
 	}
 	void Scene::Update()
 	{
+
 		for (GameObject* gameObj : mGameObjects)
 		{
 			gameObj->Update();
@@ -28,7 +40,13 @@ namespace mo {
 		{
 			gameObj->Render();
 		}
-
-		mGameObj->Render();
+	}
+	void Scene::Release()
+	{
+		for (GameObject* gameObj : mGameObjects)
+		{
+			delete gameObj;
+			gameObj = nullptr;
+		}
 	}
 }

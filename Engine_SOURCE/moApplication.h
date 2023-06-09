@@ -19,6 +19,8 @@ namespace mo {
 
 		void SetWindow(HWND hwnd, UINT width, UINT height);
 
+		void SceneRelease() { mScene->Release(); }
+
 		UINT GetWidth() { return mWidth; }
 		UINT GetHeight() { return mHeight; }
 		HWND GetHwnd() { return mHwnd; }

@@ -5,6 +5,7 @@
 #include "Editor_Window.h"
 #include "moApplication.h"
 #include "moRenderer.h"
+#include "moScene.h"
 
 mo::Application application;
 
@@ -77,6 +78,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         }
     }
     mo::renderer::Release();
+    application.SceneRelease();
+
     return (int)msg.wParam;
 }
 
