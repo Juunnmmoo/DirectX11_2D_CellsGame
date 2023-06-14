@@ -2,7 +2,8 @@
 
 namespace mo::renderer {
 
-	Vertex vertexes[4] = {};
+	const int numSegments = 360;
+	Vertex vertexes[numSegments + 1] = {};
 	mo::Mesh* mesh = nullptr;
 	mo::Shader* shader = nullptr;
 	std::vector<mo::graphics::ConstantBuffer*> constantBuffer = {};
@@ -34,15 +35,17 @@ namespace mo::renderer {
 	void LoadBuffer()
 	{
 		mesh = new mo::Mesh();
-		mesh->CreateVertexBuffer(vertexes, 4);
+		mesh->CreateVertexBuffer(vertexes, numSegments + 1);
 
 		std::vector<UINT> indexes = {};
-		indexes.push_back(0);
-		indexes.push_back(1);
-		indexes.push_back(2);
-		indexes.push_back(0);
-		indexes.push_back(2);
-		indexes.push_back(3);
+
+		for (int i = 0; i < numSegments; ++i)
+		{
+			indexes.push_back(0);
+			indexes.push_back((i + 1) % numSegments + 1);
+			indexes.push_back(i + 1);
+		}
+		
 
 		mesh->CreateIndexBuffer(indexes.data(), indexes.size());
 
@@ -66,18 +69,17 @@ namespace mo::renderer {
 
 	void Initialize()
 	{
-		// 사각형
-		vertexes[0].pos = Vector3(-0.05f, 0.1f, 0.0f);
-		vertexes[0].color = Vector4(1.0f, 0.0f, 0.0f, 1.0f);
+		vertexes[0].pos = Vector3(0.0f, 0.0f, 0.0f);
+		vertexes[0].color = Vector4(1.0f, 1.0f, 1.0f, 1.0f);
 
-		vertexes[1].pos = Vector3(0.05f, 0.1f, 0.0f);
-		vertexes[1].color = Vector4(0.0f, 1.0f, 0.0f, 1.0f);
-
-		vertexes[2].pos = Vector3(0.05f, -0.1f, 0.0f);
-		vertexes[2].color = Vector4(0.0f, 0.0f, 1.0f, 1.0f);
-
-		vertexes[3].pos = Vector3(-0.05f, -0.1f, 0.0f);
-		vertexes[3].color = Vector4(1.0f, 1.0f, 1.0f, 1.0f);
+		// 삼각형을 이루는 정점 생성
+		float angleIncrement = 2.0f * 3.14159f / numSegments;
+		for (int i = 0; i < numSegments; ++i)
+		{
+			float angle = i * angleIncrement;
+			vertexes[i + 1].pos = Vector3(cosf(angle) * 0.1f, sinf(angle) * 0.1f , 0.0f);
+			vertexes[i + 1].color = Vector4(1.0f, 1.0f, 1.0f, 1.0f);
+		}
 
 		LoadBuffer();
 		LoadShader();

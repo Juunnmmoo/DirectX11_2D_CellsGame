@@ -32,7 +32,7 @@ namespace mo {
 	{
 		mTime += Time::DeltaTime();
 
-		if (mTime > 3.0f)
+		if (mTime > 0.4f)
 		{
 			mTime = 0.0f;
 			Monster* monster = new Monster();
@@ -57,7 +57,7 @@ namespace mo {
 					gameObj->Destroyed();
 
 					float x = mPlayer->GetScale().x;
-					x = x + 0.1;
+					x = x + 0.2;
 					mPlayer->SetScale(Vector4(x, 0.0f, 0.0f, 0.0f));
 				}
 			}
@@ -89,7 +89,7 @@ namespace mo {
 	}
 	bool Scene::CheckColider(GameObject* monster)
 	{
-		Vector2 origigLength = Vector2(mo::renderer::vertexes[1].pos.x, mo::renderer::vertexes[1].pos.y);
+		/*Vector2 origigLength = Vector2(mo::renderer::vertexes[1].pos.x, mo::renderer::vertexes[1].pos.y);
 
 		Vector4 monsterPos = monster->GetPos();
 		Vector4 playerPos = mPlayer->GetPos();
@@ -102,7 +102,24 @@ namespace mo {
 
 		if (fabs(playerCollider.x + monsterCollider.x) > fabs(playerPos.x - monsterPos.x)
 			&& fabs(playerCollider.y + monsterCollider.y) > fabs(playerPos.y - monsterPos.y))
-			return true;
+			return true;*/
+
+
+		Vector4 monsterPos = monster->GetPos();
+		Vector4 playerPos = mPlayer->GetPos();
+
+		Vector4 originMonsterScale = monster->GetScale();
+		Vector4 originPlayerScale = mPlayer->GetScale();
+
+		float monsterRadius = originMonsterScale.x * 0.1;
+		float playerRadius = originPlayerScale.x * 0.1;
+
+		float dx = monsterPos.x - playerPos.x;
+		float dy = monsterPos.y - playerPos.y;
+		float dis = std::sqrt(dx * dx + dy * dy);
+
+		if ((monsterRadius + playerRadius) > dis)
+			return true; 
 
 		return false;
 	}
